@@ -1,0 +1,31 @@
+{% include 'library/basic.html' %}
+{% block content %}
+<div class="container w-50 mt-4 card p-4 bg-info">
+        
+            
+        <form action="/" method="post">{% csrf_token %}
+        <div class="row">
+            <div class="col-10">
+                <input type="text" name="book" id="book" class="form-control" placeholder="Add Name Of Book">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-warning" type='submit'>Add</button>
+            </div>
+        </div>
+    </form>
+        <ol class="list-group list-group-numbered mt-2">
+            {% for book in books %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><a href="/update/{{book.id}}">{{book.namee}}</a></div>
+                {{book.timestamp}}
+              </div>
+              <a href="/delete/{{book.id}}/"><span class="badge bg-danger rounded-pill">X</span></a>
+            </li>
+          
+            {% endfor %}
+          </ol>
+        
+    </div>
+{% endblock content %}    
+ 
